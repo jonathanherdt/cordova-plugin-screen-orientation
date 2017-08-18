@@ -55,10 +55,16 @@
         
         if ([UIDevice currentDevice] != nil){
             NSNumber *value = nil;
-            if(orientationMask == 8 || orientationMask == 12) {
+            if(orientationMask == 8) {
                 value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
             } else if (orientationMask == 4){
                 value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+            } else if (orientationMask == 12) {
+                if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight) {
+                    value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+                } else {
+                    value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+                }
             } else if (orientationMask == 1 || orientationMask == 3) {
                 value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
             } else if (orientationMask == 2) {
